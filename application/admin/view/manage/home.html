@@ -1,0 +1,18 @@
+{extend name="layout/layout" /}
+{block name="title"}控制台首页{/block}
+
+{block name="content"}
+  <div class="am-cf am-padding am-padding-bottom-0">
+    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">控制台</strong> / <small>首页</small></div>
+  </div>
+
+  <hr>
+
+  <div class="am-g">
+    <div class="am-u-sm-12">
+      <h2 class="am-text-center am-text-xxxl am-margin-top-lg">欢迎管理员: {$loginInfo.username}
+      </h2>
+      <p class="am-text-center">上次登录时间:</p>
+    </div>
+  </div>
+{/block}
