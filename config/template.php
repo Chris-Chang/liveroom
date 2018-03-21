@@ -33,5 +33,6 @@ return [
     //模板输出替换
     'tpl_replace_string'  =>  [
     '__STATIC__'=>'/static',
+    '__RTMP_URL__'=>'rtmp://www.vmliveroom.io/myapp'
 ]
 ];

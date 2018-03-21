@@ -1,0 +1,450 @@
+/*导航栏样式*/
+/*滚动条样式 开始*/
+.error-msg-alert{
+    z-index: 999;
+    text-align: center;
+}
+
+html body::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+
+html body::-webkit-scrollbar
+{
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+html body::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #ccc;
+}
+.room-viedo-notice::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+
+.room-viedo-notice::-webkit-scrollbar
+{
+    width: 5px;
+    background-color: #F5F5F5;
+}
+
+.room-viedo-notice::-webkit-scrollbar-thumb
+{
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #ccc;
+}
+.room-viedo-chat::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+.room-viedo-chat::-webkit-scrollbar
+{
+    width: 5px;
+    background-color: #F5F5F5;
+}
+.room-viedo-chat::-webkit-scrollbar-thumb
+{
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #ccc;
+}
+.left-type-link-box::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 0;
+    background-color: #34372E;
+}
+
+.left-type-link-box::-webkit-scrollbar
+{
+    width: 8px;
+    background-color: #000000;
+}
+
+.left-type-link-box::-webkit-scrollbar-thumb
+{
+    border-radius: 0;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #F37F40;
+}
+/*滚动条样式结束*/
+/* user-info-panel */
+.user-info-panel .logo-img-lg:hover{
+    border-radius: 50%;
+    box-shadow: 0 3px 5px #ccc;
+}
+.am-topbar{
+    margin-bottom: 0;
+}
+.index-slider{
+    max-height: 600px;
+    overflow-y: hidden;
+    margin-bottom: 20px;
+}
+.index-panel .am-titlebar-default .am-titlebar-title:before {
+    border-left: none;
+}
+.index-panel .am-titlebar{
+    margin-top: 0;
+}
+.index-panel .am-titlebar-title{
+    font-weight: normal;
+}
+.index-panel .index-panel-box{
+    background-color: #fff;
+    padding-left:0;
+    padding-right: 0;
+    padding-bottom: 10px;
+}
+.index-panel .index-panel-box-content{
+    padding-top: 10px;
+    min-height: 200px;
+}
+.course-bg-box{
+    border:solid 1px #dfdfdf;
+}
+.course-bg-img{
+    width:100%;
+    background-size: contain;
+    position: relative;
+}
+.course-bg-info,.course-bg-user{
+    padding:5px;
+}
+.course-bg-user{
+    color:#787878;
+}
+.course-bg-img .bg-img{
+    width:100%;
+}
+.course-bg-box .mask{
+    background: rgba(0,0,0,0.5);
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    opacity: 1;
+    font-size: 17px;
+    will-change: opacity,filter,-webkit-filter,-moz-filter,-ms-filter,-o-filter;
+    color: white;
+    text-align: center;
+    display: none;
+    padding-top: 50px;
+}
+.top-room-box{
+    line-height: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: dashed 1px #dfdfdf;
+}
+.hvr-underline-from-left:before {
+    background: #EB613B;
+}
+/* user-info-panel */
+
+/*导航栏样式 结束*/
+
+@media only screen and (min-width:641px) {
+    .am-container{
+       max-width:1400px;
+    }
+}
+.am-icon-*{
+    cursor: pointer;
+}
+.nav-search-input{
+    border: 1px solid #F8F8F8;
+    color: #F6F6F6;
+    background-color: #F6F6F6;
+}
+.no-padding-right{
+    padding-right: 5px;
+}
+.no-padding-left{
+    padding-left: 5px;
+}
+/*左边 box start*/
+.room-left-box{
+    height:100%;
+    background: url(http://i9.pdim.gs/fa951936423e31b908cd3bbb481173d5.jpg) #3a4134 0 0 no-repeat;
+    background-size:cover;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 300px;
+}
+.room-left-box .room-left-box-logo{
+    padding-top: 30px;
+
+}
+.room-left-box .room-left-box-form{
+    border-color: #454c4c;
+}
+.room-left-box .left-nav-search-form{
+    padding-top: 20px;
+}
+.room-left-box .left-nav-search-input{
+    border: 1px solid #454c4c;
+    color: #a9a9a9;
+    background-color: #454c4c;
+}
+.room-left-box  .left-type-box{
+    color:#999;
+}
+.room-left-box  .left-type-box .left-type-link-box{
+    height:400px;
+    overflow-y: scroll;
+}
+.room-left-box .left-type-box .left-type-link{
+    background-color: #000000;
+    color:#d6d6d6;
+    text-align: center;
+    margin-bottom:5px;
+    padding:10px;
+}
+.hvr-bounce-to-right:before {
+    background: #EB613B;
+}
+.room-left-box  .left-user-box{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 120px;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    background: url(http://i6.pdim.gs/5b230bb1d95705588d556116d84adb25.png) rgba(15,15,15,.95) center bottom no-repeat;
+    z-index: 0;
+}
+.room-left-box  .left-user-box .user-logo{
+    width:60px;
+    height: 60px;
+    margin-right: 20px;
+}
+.room-left-box  .left-user-box .left-user-logo{
+    padding-top: 5px;
+    padding-left:20px;
+    color:#fff;
+    font-size:20px;
+}
+.room-left-box  .left-user-box  .user-btn-box .user-link{
+    background-color: #292929;
+    border: solid 1px #292929;
+}
+.room-left-box  .left-user-box .left-user-logo .user-link:hover{
+    background-color: #3F4541;
+    border: solid 1px #3F4541;
+}
+.room-left-box .no-login-box{
+    padding-top: 40px;
+}
+/*左边 box end*/
+.room-middle-box{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-left: 320px;
+    padding-right: 320px;
+}
+.room-right-box{
+    border: 1px solid #ececec;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    height: 100%;
+    background-size: cover;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+}
+.room-content-title{
+    background-color: #fff;
+    border: solid 1px #e2e2e2;
+    box-shadow: 0 0 2px #e2e2e2;
+    padding-top:10px;
+    padding-bottom: 10px;
+    padding-left:0;
+    color:#797979;
+}
+.room-content-title .room-user-logo{
+    padding-left: 0;
+}
+.room-content-title img{
+    width:70px;
+    height: 70px;
+}
+.room-content-title .title-span{
+    font-size: 20px;
+}
+.room-content-title .title-span-bottom{
+    padding-top:10px;
+}
+
+.room-content-title .room-title-desc-content{
+    padding-left: 0;
+}
+.room-content-title .room-title-desc{
+    padding-left: 5px;
+    font-size: 14px;
+}
+.room-viedo-desc-content{
+    font-size: 14px;
+}
+.room-viedo-content {
+    padding:10px 0 10px 0 ;
+}
+.room-viedo-desc{
+    background-color: #fff;
+    padding:10px;
+    border: solid 1px #e2e2e2;
+}
+.room-viedo-desc h2{
+    padding-bottom: 5px;
+    border-bottom: 1px solid #c0c0c0;
+}
+.room-viedo-notice{
+    background-color: #fff;
+    color:#797979;
+    padding-top: 10px;
+    overflow-y: scroll;
+    border: solid 1px #e2e2e2;
+    box-shadow: 0 0 2px #e2e2e2;
+    height: 100px;
+}
+.room-viedo-notice h3{
+    padding-bottom: 5px;
+    margin: 0;
+    border-bottom: 1px solid #c0c0c0;
+}
+.room-viedo-notice .room-viedo-notice-content{
+    font-size: 14px;
+}
+.room-viedo-chat{
+    background-color: #fbfbfb;
+    color:#797979;
+    padding-top: 10px;
+    overflow-y: scroll;
+    border: solid 1px #e2e2e2;
+    height:600px;
+    border-top:0;
+}
+.room-viedo-chat-button-box{
+    background-color: #EDEDED;
+    height: 100px;
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
+.room-viedo-chat-button-box textarea{
+    width: 100%;
+    resize: inherit;
+    height: 50px;
+    border: 1px solid #ccc;
+}
+.room-viedo-chat-button-box .left-div{
+    width: 70%;
+    float: left;
+    font-size: 14px;
+}
+.room-viedo-chat-button-box .right-div{
+    width: 30%;
+    height: 50px;
+    padding-top: 15px;
+}
+/**登录界面的css **/
+.login-bg{
+    background-image: url('/static/images/login_bg.png');
+    background-size:cover;
+    position: fixed;
+    top:0;
+    left:0;
+    bottom: 0;
+    right:0;
+    height:100%;
+    width:100%;
+}
+.login-header{
+    padding-top:50px;
+   min-height:100px;
+}
+.login-container{
+    background-color: rgba(255,255,255,0.8);
+    margin-top:100px;
+    padding:30px;
+    border-radius: 1%;
+    box-shadow: 0 0 5px #fff;
+}
+.login-container .login-container-left {
+}
+.login-container .login-container-left  .bottom{
+    border-right: dashed 1px #fff;
+}
+.login-container .login-container-right{
+    padding-top:100px;
+}
+.login-container .am-checkbox{
+    padding-top: 0;
+}
+.login-container .am-ucheck-icons{
+    padding-top:10px;
+}
+.am-form input[type="text"]{
+    background-color: rgba(255,255,255,0.4);
+}
+.am-form input[type="password"]{
+    background-color: rgba(255,255,255,0.4);
+}
+
+/**登录界面的css end**/
+
+
+/**用户信息资料的 css start **/
+.user-info-content{
+    padding-bottom: 20px;
+}
+.user-info-content .logo-content{
+    margin-bottom:30px;
+}
+.user-info-content .am-tabs-d2{
+    box-shadow: 0 1px 5px #dfdfdf;
+}
+.user-edit-content{
+    border-left: 2px #dfdfdf dashed;
+}
+.user-edit-content .am-tabs-d2 .am-tabs-nav .am-active{
+    background-color: #eeeeee;
+}
+.user-room-content {
+    margin-bottom: 20px;
+}
+.user-room-content .am-text-danger{
+    cursor: pointer;
+}
+.user-room-content .room-info-form{
+    box-shadow: 0 0 3px #dfdfdf;
+}
+/**用户信息资料的 css end **/
+
+.index-bar-btn{
+}
+.am-topbar-right .am-icon-btn{
+    margin-right:15px;
+}

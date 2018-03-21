@@ -1,0 +1,86 @@
+﻿<CuPlayer>
+ <Player_Set 
+		JcScpBufferTime = "3"
+ 		JcScpVolume = "75"
+		JcScpCode = "utf8"
+ 		JcScpImgDisplay = "no"
+		JcScpAutoHideControl="yes"
+		JcScpControlHideTime="0.5"
+		JcScpControlHeight="40"	
+		JcScpShowList= "yes"
+		JcScpAutoRepeat = "no"
+		JcScpsetMode = "1"
+		JcScpAFrontCanClose = "no"
+		JcScpShowRightmenu = "no"
+		JcScpShareMode = "JcScpVideoPath"
+		JcScpLoadbarMode = "0"
+        JcScpLiveMode  = "1"
+	/>
+      <Logo_Set
+ 		JcScpLogoDisplay = "yes"
+ 		JcScpLogoPath = "/static/cuplayer/images/logo.png"
+ 		JcScpLogoPosition = "top-left"
+		JcScpLogoWidth = "100"
+ 		JcScpLogoHeight = "50"
+ 		JcScpLogoAlpha = "0.8"
+	/>
+      <Flashvars_Set
+		JcScpAutoPlay = "yes"
+		JcScpServer  =""
+		JcScpVideoPath = ""
+		JcScpVideoPathHD = ""
+		JcScpImg ="./images/startpic.jpg"
+        JcScpTitle  = ""
+		JcScpStarTime = "0" 
+		JcScpEndTime = "0"
+		JcScpCuePointInfo = "提示点1|提示点2|提示点3"
+		JcScpCuePointTime = "50|80|120"
+		ShowJcScpAFront = "no"
+		JcScpCountDowns = "5"
+		JcScpCountDownsPosition = "top-right"
+		JcScpAFrontW = "730"
+		JcScpAFrontH = "454"
+
+		ShowJcScpAVideo= "no"
+		JcScpAVideoServer= ""	
+
+		ShowJcScpAPause = "no"
+		JcScpAPausePath = "./other/a300x250_01.swf|other/a300x250_01.jpg|other/a300x250_02.jpg"
+		JcScpAPauseW = "300"
+		JcScpAPauseH = "250"
+		JcScpAPauseLink= "http://www.cuplayer.com/CuPlayer/link/L031.html|http://www.cuplayer.com/CuPlayer/link/L032.html|http://www.cuplayer.com/CuPlayer/link/L033.html"
+		
+		ShowJcScpACorner = "no"
+		JcScpACornerPath= "./other/a90x50_01.swf|other/a90x50_01.swf"
+		JcScpACornerW = "90"
+		JcScpACornerH = "50"
+		JcScpACornerPosition = "top-right"
+		JcScpACornerLink = "http://www.cuplayer.com/CuPlayer/link/L041.html|http://www.cuplayer.com/CuPlayer/link/L042.html"
+ 
+		ShowJcScpAEnd = "no"
+		JcScpAEndPath = "./other/a400x300_01.swf|other/a400x300_01.swf"
+		JcScpAEndW = "400"
+		JcScpAEndH = "300"
+		JcScpAEndLink= "http://www.cuplayer.com/CuPlayer/link/L051.html|http://www.cuplayer.com/CuPlayer/link/L051.html"
+
+		ShowJcScpAMoveText = "no"
+		
+	 />
+
+	 <SkinColor_Set
+ 		JcScpBackcolor = "0x000000"
+        JcScpBackcolortop = "0x353535"
+        JcScpLightcolor = "0xcfcfcf"
+        
+        JcScpFontcolor = "0xffffff"
+        JcScptimebg = "0x393939"
+        
+        JcScpLoadbar = "0x00a0e9"
+        JcScpLoaded = "0x4d4b4b"
+        JcScpLoadbg = "0x222222"
+        JcScpPlayBtn = "0x2d2d2d"
+		
+        JcScpBar = "0xffffff" 
+	 />
+
+</CuPlayer>

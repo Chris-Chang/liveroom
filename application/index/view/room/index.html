@@ -1,0 +1,209 @@
+<link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.css">
+{extend name="layout/base_front_item"}{/extend}
+{block name="title"}{$roomInfo.name}{/block}
+{block name="other_head"}
+<script language=javascript src="__STATIC__/cuplayer/js/action.js" type=text/javascript></script>
+<style>
+    #room-viedo-chat p{
+        font-size:13px;
+        line-height:14px;
+        margin:1px;
+        margin-top:10px;
+        overflow-wrap: break-word;
+    }
+    #room-viedo-chat{
+        overflow-y: scroll;
+        background-color: #fff;
+        padding-left:5px;
+    }
+</style>
+{/block}
+{block name="content"}
+
+<div class="room-middle-box">
+        <div class="room-viedo-content am-u-md-12">
+            <div class="video" id="CuPlayer"><b><img src="__STATIC__/cuplayer/images/loading.gif" alt=""/>
+                视频播放器加载中，请稍后...</b></div>
+            <!--cuplayer /代码开始-->
+            <script type="text/javascript" src="__STATIC__/cuplayer/js/swfobject.js"></script>
+            {if condition="$roomInfo.status eq 1"}
+              <script type="text/javascript">
+                var rtmpApp = "__RTMP_URL__";
+                var stream = "{$roomInfo.guid}";
+                var title = "{$roomInfo.name}";
+                var staticUrl = "__STATIC__/cuplayer/";
+                var so = new SWFObject(staticUrl + "player.swf", "myCuPlayer", "100%", "600", "9", "#000000");
+                so.addParam("allowfullscreen", "true");
+                so.addParam("allowscriptaccess", "always");
+                so.addParam("wmode", "opaque");
+                so.addParam("quality", "high");
+                so.addParam("salign", "lt");
+                //播放器设置文件-----------------------------
+                so.addVariable("JcScpFile", staticUrl + "CuSunV4setLive.xml"); //配置文件
+                //视频文件及略缩图--------------------------
+                /* 以下这行仅为rtmp直播时写法示例，直播信号是关的，请对应换成你自己的直播流使用 */
+                so.addVariable("JcScpServer", rtmpApp); //流媒体服务器
+                so.addVariable("JcScpVideoPath", stream); //直播流名称
+
+                so.addVariable("JcScpAutoPlay", "yes"); //是否自动播放
+                so.addVariable("JcScpImg","__STATIC__/images/live/10000.png"); //视频缩略图
+                //-----------------------------------------
+                so.addVariable("JcScpSharetitle", title); //视频标题
+                so.write("CuPlayer");
+            </script>
+            {else /}
+              <script type="text/javascript">
+                var rtmpApp = "__RTMP_URL__";
+                var stream = "{$roomInfo.guid}";
+                var title = "{$roomInfo.name}";
+                var staticUrl = "__STATIC__/cuplayer/";
+                var so = new SWFObject(staticUrl + "player.swf", "myCuPlayer", "100%", "600", "9", "#000000");
+                so.addParam("allowfullscreen", "true");
+                so.addParam("allowscriptaccess", "always");
+                so.addParam("wmode", "opaque");
+                so.addParam("quality", "high");
+                so.addParam("salign", "lt");
+                //播放器设置文件-----------------------------
+                so.addVariable("JcScpFile", staticUrl + "CuSunV4setLive.xml"); //配置文件
+                //视频文件及略缩图--------------------------
+                /* 以下这行仅为rtmp直播时写法示例，直播信号是关的，请对应换成你自己的直播流使用 */
+                so.addVariable("JcScpServer", rtmpApp); //流媒体服务器
+                so.addVariable("JcScpVideoPath", stream); //直播流名称
+
+                so.addVariable("JcScpAutoPlay", "no"); //是否自动播放
+                so.addVariable("JcScpImg","__STATIC__/images/play_bg.jpg"); //视频缩略图
+                //-----------------------------------------
+                so.addVariable("JcScpSharetitle", title); //视频标题
+                so.write("CuPlayer");
+            </script>
+            {/if}
+            <!--cuplayer/代码结束-->
+        </div>
+    </div>
+</div>
+<div class="room-right-box no-padding-left am-u-md-2 am-u-lg-2 no-padding-right">
+    <!--right box start-->
+    <div class=" am-u-md-12 am-u-lg-12 room-viedo-notice">
+        <h3>直播公告 <span class="am-icon-volume-off "></span>：</h3>
+        <div class="room-viedo-notice-content">
+            {$roomInfo.notice}
+        </div>
+    </div>
+    <!--notice end-->
+    <!--chat box start -->
+    <div class=" am-u-md-12 am-u-lg-12 room-viedo-chat" id="room-viedo-chat" style="font-size:14px;">
+
+    </div>
+    <div class="am-u-md-12 am-u-lg-12 room-viedo-chat-button-box">
+        <div class="left-div">
+            <textarea name="chattext" id="chattext" placeholder="输入聊天内容..."></textarea>
+        </div>
+        <div class="am-btn am-btn-warning right-div am-text-center " onclick="sendMsg();" id="sendMsgBox">
+            <span class="" id="sendMsgBtn">
+                发送
+            </span>
+        </div>
+    </div>
+    <!--chat box end -->
+</div>
+
+
+<script>
+    ws = new WebSocket("ws://127.0.0.1:8282");
+    var ajaxUrl="{:url('/gateway/bind')}";
+    var ajaxMsgUrl="{:url('/gateway/send')}";
+    var roomId="{$roomInfo.guid}";
+    var loginUser="{$userLoginInfo.guid}";
+    var roomUser="{$roomInfo.uid}";
+        // 服务端主动推送消息时会触发这里的onmessage
+    ws.onmessage = function(e){
+        // console.log(e.data);
+        // json数据转换成js对象
+        var data = eval("("+e.data+")");
+        var type = data.type || '';
+        switch(type){
+            // Events.php中返回的init类型的消息，将client_id发给后台进行uid绑定
+            case 'init':
+                // 利用jquery发起ajax请求，将client_id发给后端进行uid绑定
+                $.post(ajaxUrl, {type:'init',client_id: data.client_id,room:roomId}, function(data){
+                    // console.log(data);
+                }, 'json');
+                break;
+            // 当mvc框架调用GatewayClient发消息时直接alert出来
+            case 'ping':
+                $.post(ajaxUrl, {type:'pong'}, function(data){
+                }, 'json');
+                break;
+            default :
+            console.log(data);
+                if(loginUser == data.user){
+                    addMsgToHtml(data.message,'#F37B1D');
+                    break;
+                }else if(data.user==roomUser){
+                    addMsgToHtml("[教师] "+data.message,'#0e90d2');
+                    break;
+                }else{
+                    addMsgToHtml(data.message,'#333');
+                }
+
+                break;
+        }
+    };
+    // 向面板中增加消息
+    function addMsgToHtml(message ,color) {
+        if(message.length==0){
+            return false;
+        }
+        // 获取html,并且增加html
+        var obj=$("#room-viedo-chat");
+        var html=obj.html();
+        html+='<p><font color="'+color+'">'+message+'</p>';
+        obj.html(html);
+        obj.scrollTop(obj[0].scrollHeight);
+    }
+</script>
+<script>
+
+// 发送聊天消息
+function sendMsg(){
+    // 去掉onclick属性,使得3秒之内无法发送信息
+    $("#sendMsgBox").attr('onclick','');
+    var btnObj=$("#sendMsgBtn");
+    var tmpNum=3;
+    var tmpMsg=tmpNum+' S';
+    btnObj.text(tmpMsg);
+    var int =setInterval(function () {
+        // 3秒之内不能发送信息,3秒之后,回复onclick属性以及文字
+        if(tmpNum==0){
+            tmpMsg="发送";
+            clearInterval(int);
+            btnObj.text("发送");
+            $("#sendMsgBox").attr('onclick','sendMsg()');
+        }
+        btnObj.text(tmpMsg);
+        tmpNum-=1;
+        tmpMsg=tmpNum+' S';
+    },1000);
+    var message=$("#chattext").val().trim();
+    var obj=$("#room-viedo-chat");
+    var html=obj.html();
+    if(message.length>=140){
+        // 获取html,并且增加html
+        addMsgToHtml("系统提示: 不能超过140个字符","#8b0000");
+        return false;
+    }
+    if(message.length==0){
+        // 获取html,并且增加html
+        addMsgToHtml("系统提示: 不能发送空消息","#8b0000");
+        return false;
+    }
+    // 向server端发送ajax请求
+    $.post(ajaxMsgUrl,{room:roomId,message:message},function (data) {
+    },'json');
+    // 清空数据
+    var message=$("#chattext").val("");
+    return false;
+}
+</script>
+
+{/block}

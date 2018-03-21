@@ -17,4 +17,6 @@ Route::get('hello/:name', 'index/hello');
 
 return [
 		'news/:id'	=> 'index/index/info',
+		'/gateway/bind'=>'index/GatewayServer/bind',
+		'/gateway/send'=>'index/GatewayServer/send'
 ];
