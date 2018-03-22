@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Room2</title>
+</head>
+<body>
+<script type="text/javascript" src="__STATIC__/ckplayer/ckplayer.js"></script>
+<div id="video" style="width:600px;height:400px;"></div>
+<script type="text/javascript">
+	var videoObject = {
+		container: '#video',//“#”代表容器的ID，“.”或“”代表容器的class
+		variable: 'player',//该属性必需设置，值等于下面的new chplayer()的对象
+		flashplayer:false,//如果强制使用flashplayer则设置成true
+		video:'rtmp://vmphplive.io/myapp/3'//视频地址
+	};
+	var player=new ckplayer(videoObject);
+</script>
+</body>
+</html>

@@ -22,39 +22,39 @@ class Rtmp extends Controller
      */
     public function onPublish(Request $request)
     {
-        // // 接受name和pass param可以自动选择get或者是post
-        // // 推流格式10000?pass=d8db6bd3e8495edc7047dc15c148aa26 -  md5('10000'.md5('123456'));
-        // $name = trim($request->param('name'));
-        // $pass = trim($request->param('pass'));
-        // if (empty($name) || empty($pass)) {
-        //     echo "串码流不正确1";
-        //     // thinkphp5返回头信息的函数
-        //     return json('')->code(404)->header(['Not Found']);
-        // }
-        // $roomInfo = Db::name('room')->where(['guid' => $name])->find();
-        // //　如果房间不存在或者房间被封禁，则无法推流
-        // if (count($roomInfo) <= 0 || $roomInfo['disable'] == 1) {
-        //     echo "串码流不正确2";
-        //     return json('')->code(404)->header(['Not Found']);
-        // }
-        // $userRoomInfo = Db::name('userzhubo')->where(['room' => $name])->find();
-        // $userGuid = $userRoomInfo['user'];
-        // $userInfo = Db::name('user')->where(['guid' => $userGuid])->find();
-        // if (count($userInfo) <= 0 || $pass != md5($name.$userInfo['password'])) {
-        //     echo "串码流不正确3";
-        //     return json('')->code(404)->header(['Not Found']);
-        // }
-        // // 如果用户验证成功，则开始推流，将房间设置成直播模式 status = 1 更新updatetime
-        // $arr=[
-        //     'status'=>1,
-        //     'update_time'=>time(),
-        // ];
-        // $res = Db::name('room')->where(['guid' => $name])->update($arr);
-        // if ($res) {
-        //     return json('')->code(200)->header(['OK']);
-        // } else {
-        //     return json('')->code(404)->header(['数据库更新错误']);
-        // }
+        // 接受name和pass param可以自动选择get或者是post
+        // 推流格式10000?pass=d8db6bd3e8495edc7047dc15c148aa26 -  md5('10000'.md5('123456'));
+        $name = trim($request->param('name'));
+        $pass = trim($request->param('pass'));
+        if (empty($name) || empty($pass)) {
+            echo "串码流不正确1";
+            // thinkphp5返回头信息的函数
+            return json('')->code(404)->header(['Not Found']);
+        }
+        $roomInfo = Db::name('room')->where(['guid' => $name])->find();
+        //　如果房间不存在或者房间被封禁，则无法推流
+        if (count($roomInfo) <= 0 || $roomInfo['disable'] == 1) {
+            echo "串码流不正确2";
+            return json('')->code(404)->header(['Not Found']);
+        }
+        $userRoomInfo = Db::name('userzhubo')->where(['room' => $name])->find();
+        $userGuid = $userRoomInfo['user'];
+        $userInfo = Db::name('user')->where(['guid' => $userGuid])->find();
+        if (count($userInfo) <= 0 || $pass != md5($name.$userInfo['password'])) {
+            echo "串码流不正确3";
+            return json('')->code(404)->header(['Not Found']);
+        }
+        // 如果用户验证成功，则开始推流，将房间设置成直播模式 status = 1 更新updatetime
+        $arr=[
+            'status'=>1,
+            'update_time'=>time(),
+        ];
+        $res = Db::name('room')->where(['guid' => $name])->update($arr);
+        if ($res) {
+            return json('')->code(200)->header(['OK']);
+        } else {
+            return json('')->code(404)->header(['数据库更新错误']);
+        }
 
 
         $name=$request->param('name');

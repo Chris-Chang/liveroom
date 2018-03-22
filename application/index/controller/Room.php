@@ -59,4 +59,29 @@ class Room extends Controller
     {
         return $this->fetch();
     }
+
+    public function rtmp()
+    {
+        return $this->fetch();
+    }
+    public function hls()
+    {
+        return $this->fetch();
+    }
+        public function index1()
+    {
+        return $this->fetch();
+    }
+    public function definition()
+    {
+        return $this->fetch();
+    }
+        public function flashplayer()
+    {
+        return $this->fetch();
+    }
+        public function iframe()
+    {
+        return $this->fetch();
+    }
 }

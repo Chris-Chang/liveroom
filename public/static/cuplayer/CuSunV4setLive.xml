@@ -18,7 +18,7 @@
 	/>
       <Logo_Set
  		JcScpLogoDisplay = "yes"
- 		JcScpLogoPath = "/static/cuplayer/images/logo.png"
+ 		JcScpLogoPath = "./images/logo.png"
  		JcScpLogoPosition = "top-left"
 		JcScpLogoWidth = "100"
  		JcScpLogoHeight = "50"
@@ -26,8 +26,8 @@
 	/>
       <Flashvars_Set
 		JcScpAutoPlay = "yes"
-		JcScpServer  =""
-		JcScpVideoPath = ""
+		JcScpServer  ="rtmp://vmphplive.io/myapp"
+		JcScpVideoPath = "3"
 		JcScpVideoPathHD = ""
 		JcScpImg ="./images/startpic.jpg"
         JcScpTitle  = ""

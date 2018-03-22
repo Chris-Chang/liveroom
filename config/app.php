@@ -134,4 +134,17 @@ return [
     'show_error_msg'         => false,
     // 异常处理handle类 留空使用 \think\exception\Handle
     'exception_handle'       => '',
+
+    // +----------------------------------------------------------------------
+    // | ffmpeg的配置
+    // | 主要是存放截图的位置的配置
+    // +----------------------------------------------------------------------
+    'ffmpeg' => [
+        /**
+         * 所有的截图会放在这个地址
+         * - 注意最后面没有斜线 /
+         * - 完整地址如下：/data/wwwroot/default/public/static/images/live
+         */
+        'photoPos' => '/home/wwwroot/liveroom/public/static/images/live',//
+    ],
 ];
