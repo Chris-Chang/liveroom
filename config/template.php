@@ -33,6 +33,8 @@ return [
     //模板输出替换
     'tpl_replace_string'  =>  [
     '__STATIC__'=>'/static',
-    '__RTMP_URL__'=>'rtmp://www.vmliveroom.io/myapp'
+    '__RTMP_URL__'=>Env::get('rtmp_url','rtmp://vmliveroom.io/liveroom'),
+    '__WS_URL__'=>Env::get('ws_url','ws://192.168.140.11:8282'),
+    '__HLS_URL__'=>Env::get('HLS_URL','http://192.168.140.11/hls')
 ]
 ];

@@ -3,24 +3,225 @@
 <head>
 	<meta charset="UTF-8">
 	<title>room1</title>
+	<script type="text/javascript" src="__STATIC__/amazeui/js/jquery.min.js"></script>
 </head>
 <body>
-<script type="text/javascript" src="__STATIC__/cuplayer/js/swfobject.js"></script> 
-<div class="video" id="CuPlayer"> <b> <img src="__STATIC__/cuplayer/images/loading.gif" /> 网页视频播放器加载中，请稍后...</b> </div> 
+	<div class="row">
+				<div class="col-xs-12 col-sm-10 col-md-10 col-sm-offset-1 col-md-offset-1">
+					<div class="max1000 concon">
+						<h1>缓动效果，点击下面的效果名称组合查看效果</h1>
+					</div>
+				</div>
+			</div>
+	<div class="row">
+				<div class="col-xs-12 col-sm-10 col-md-10 col-sm-offset-1 col-md-offset-1">
+					<div class="max1000 form-inline">
+						<div class="form-group">
+							<select class="attributex form-control">
+								<option value="x">缓动属性</option>
+								<option value="x">x属性</option>
+								<option value="y">y属性</option>
+								<option value="alpha">alpha属性</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<select class="speedx form-control">
+							<option value="5">缓动速度</option>
+							<option value="0.5">0.5秒</option>
+							<option value="1">1秒</option>
+							<option value="2">12秒</option>
+							<option value="5">5秒</option>
+							<option value="8">8秒</option>
+							<option value="10">10秒</option>
+							<option value="15">15秒</option>
+						</select>
+						</div>
+					</div>
+				</div>
+			</div>
+	<div class="row">
+				<div class="col-xs-12 col-sm-10 col-md-10 col-sm-offset-1 col-md-offset-1">
+					<div class="max1000 concon">
+						<p> 缓动名称：
+							<label><input type="radio" name="effect" class="effect" value="None" _vimium-has-onclick-listener="">None</label>
+							<label><input type="radio" name="effect" class="effect" value="Quadratic" _vimium-has-onclick-listener="">Quadratic</label>
+							<label><input type="radio" name="effect" class="effect" value="None" _vimium-has-onclick-listener="">Cubic</label>
+							<label><input type="radio" name="effect" class="effect" value="Quartic" _vimium-has-onclick-listener="">Quartic</label>
+							<label><input type="radio" name="effect" class="effect" value="Quintic" _vimium-has-onclick-listener="">Quintic</label>
+							<label><input type="radio" name="effect" class="effect" value="Sine" _vimium-has-onclick-listener="">Sine</label>
+							<label><input type="radio" name="effect" class="effect" value="Exponential" _vimium-has-onclick-listener="">Exponential</label>
+							<label><input type="radio" name="effect" class="effect" value="Circular" _vimium-has-onclick-listener="">Circular</label>
+							<label><input type="radio" name="effect" class="effect" value="Elastic" _vimium-has-onclick-listener="">Elastic</label>
+							<label><input type="radio" name="effect" class="effect" value="Back" _vimium-has-onclick-listener="">Back</label>
+							<label><input type="radio" name="effect" class="effect" value="Bounce" _vimium-has-onclick-listener="">Bounce</label>
+						</p>
+					</div>
+				</div>
+			</div>
+	<div class="row">
+				<div class="col-xs-12 col-sm-10 col-md-10 col-sm-offset-1 col-md-offset-1">
+					<div class="max1000 concon">
+						<p> 缓动类别：
+							<label><input type="radio" name="type" class="type" value="easeIn" _vimium-has-onclick-listener="">easeIn</label>
+							<label><input type="radio" name="type" class="type" value="easeOut" _vimium-has-onclick-listener="">easeOut</label>
+							<label><input type="radio" name="type" class="type" value="easeInOut" _vimium-has-onclick-listener="">easeInOut</label>
+						</p>
+					</div>
+				</div>
+			</div>
+<script type="text/javascript" src="__STATIC__/ckplayer/ckplayer.js"></script>
+<div class="video" style="width: 1000px;height: 600px;"></div>
 <script type="text/javascript">
-var so = new SWFObject("/player/player.swf","ply","980","460","9","#000000");
-so.addParam("allowfullscreen","true");
-so.addParam("allowscriptaccess","always");
-so.addParam("wmode","opaque");
-so.addParam("quality","high");
-so.addParam("salign","lt");
-
-so.addVariable("JcScpServer","rtmp://vmphplive.io/myapp"); //您的rtmp流媒体服务器地址 
-so.addVariable("JcScpVideoPath","3"); //流名称
-so.addVariable("JcScpImg","__STATIC__/cuplayer/images/startpic.jpg"); //视频缩略图
-so.addVariable("JcScpFile","__STATIC__/cuplayer/CuSunV4set.xml"); //配置文件
-
-so.write("CuPlayer");
+	var nowI = 5;
+	var effectName = 'None',
+		typeName = 'easeIn';
+	var speed = 5;
+	var attribute = 'x';
+	var start = 0,
+		end = 0;
+	var animatePosition = [];
+	var alpha = 1;
+	$(document).ready(function($) {
+		$('.effect').click(function() {
+			effectName = $(this).val();
+			newAnimate();
+		});
+		$('.type').click(function() {
+			typeName = $(this).val();
+			newAnimate();
+		});
+		$('.speedx').change(function() {
+			speed = $(this).val();
+		});
+		$('.attributex').change(function() {
+			attribute = $(this).val();
+		});
+	});
+	var playerLoad = false;
+	var videoObject = {
+		container: '.video', //“#”代表容器的ID，“.”或“”代表容器的class
+		variable: 'player', //该属性必需设置，值等于下面的new chplayer()的对象
+		autoplay: false,
+		poster: 'pic/wdm.jpg',
+		loaded: 'loadedHandler',
+		html5m3u8:true,
+		video: '__HLS_URL__/{$roomInfo.rid}.m3u8' //视频地址 
+	};
+	var player = new ckplayer(videoObject);
+ 
+	function loadedHandler() { //播放器加载后会调用该函数
+		playerLoad = true;
+	}
+ 
+	function newAnimate() {
+		if(!playerLoad) {
+			alert('播放器还没有加载，不能添加缓动');
+			return;
+		}
+		alpha = 1;
+		nowI += 30;
+ 
+		switch(attribute) {
+			case 'x':
+				animatePosition = [2, 0, 0, nowI];
+				break;
+			case 'y':
+				animatePosition = [0, 2, nowI, 0];
+				break;
+			case 'alpha':
+				animatePosition = [0, 0, nowI, nowI];
+				alpha = 0;
+				break;
+		}
+		var obj = {
+			list: [ //list=定义元素列表
+				{
+					type: 'png', //定义元素类型：只有二种类型，image=使用图片，text=文本
+					file: 'pic/logo.png', //图片地址
+					radius: 30, //图片圆角弧度
+					width: 30, //定义图片宽，必需要定义
+					height: 30, //定义图片高，必需要定义
+					alpha: 0.9, //图片透明度(0-1)
+					marginLeft: 10, //图片离左边的距离
+					marginRight: 10, //图片离右边的距离
+					marginTop: 10, //图片离上边的距离
+					marginBottom: 10, //图片离下边的距离
+					clickEvent: "link->http://www.ckplayer.com"
+				}, {
+					type: 'text', //说明是文本
+					text: '演示弹幕内容，支持互动功能 ，点击可以播放视频', //文本内容
+					color: '0xFFDD00', //文本颜色
+					size: 14, //文本字体大小，单位：px
+					font: '"Microsoft YaHei", YaHei, "微软雅黑", SimHei,"\5FAE\8F6F\96C5\9ED1", "黑体",Arial', //文本字体
+					leading: 30, //文字行距
+					alpha: 1, //文本透明度(0-1)
+					paddingLeft: 10, //文本内左边距离
+					paddingRight: 10, //文本内右边距离
+					paddingTop: 0, //文本内上边的距离
+					paddingBottom: 0, //文本内下边的距离
+					marginLeft: 0, //文本离左边的距离
+					marginRight: 10, //文本离右边的距离
+					marginTop: 10, //文本离上边的距离
+					marginBottom: 0, //文本离下边的距离
+					backgroundColor: '0x000000', //文本的背景颜色
+					backAlpha: 0.1, //文本的背景透明度(0-1)
+					backRadius: 30, //文本的背景圆角弧度
+					clickEvent: "actionScript->videoPlay"
+				}
+			],
+			//x: 10, //元件x轴坐标，注意，如果定义了position就没有必要定义x,y的值了，x,y支持数字和百分比，使用百分比时请使用单引号，比如'50%'
+			//y: 50, //元件y轴坐标
+			//position:[1,1],//位置[x轴对齐方式（0=左，1=中，2=右），y轴对齐方式（0=上，1=中，2=下），x轴偏移量（不填写或null则自动判断，第一个值为0=紧贴左边，1=中间对齐，2=贴合右边），y轴偏移量（不填写或null则自动判断，0=紧贴上方，1=中间对齐，2=紧贴下方）]
+			position: animatePosition,
+			alpha: alpha, //元件的透明度
+			//backgroundColor: '0xFFDD00', //元件的背景色
+			backAlpha: 0.5, //元件的背景透明度(0-1)
+			backRadius: 60, //元件的背景圆角弧度
+			clickEvent: "actionScript->videoPlay"
+		}
+		var ele = player.addElement(obj);
+		var eleObj = player.getElement(ele);
+		switch(attribute) {
+			case 'x':
+				start = null;
+				end = 0 - eleObj['width'];
+				break;
+			case 'y':
+				start = '85%';
+				end = 0 - eleObj['height'];
+				break;
+			case 'alpha':
+				start = 0;
+				end = 1;
+				alpha = 0;
+				break;
+		}
+		if(nowI > 160) {
+			nowI = 5;
+		}
+		var obj = {
+			element: ele,
+			parameter: attribute,
+			static: true, //是否禁止其它属性，true=是，即当x(y)(alpha)变化时，y(x)(x,y)在播放器尺寸变化时不允许变化
+			effect: effectName + '.' + typeName,
+			start: start,
+			end: end,
+			speed: speed,
+			overStop: true,
+			pauseStop: true,
+			callBack: 'deleteChild'
+		};
+		var animate = player.animate(obj);
+	}
+ 
+	function deleteChild(ele) {
+		if(player) {
+			window.setTimeout(function() {
+				player.deleteElement(ele);
+			}, 1000);
+ 
+		}
+	}
 </script>
 </body>
 </html>

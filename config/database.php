@@ -15,11 +15,11 @@ return [
     // 服务器地址
     'hostname'        => '127.0.0.1',
     // 数据库名
-    'database'        => 'liveroom',
+    'database'        => Env::get('database.name','phplive'),
     // 用户名
-    'username'        => 'root',
+    'username'        => Env::get('database.username','root'),
     // 密码
-    'password'        => 'root',
+    'password'        => Env::get('database.password','root'),
     // 端口
     'hostport'        => '',
     // 连接dsn

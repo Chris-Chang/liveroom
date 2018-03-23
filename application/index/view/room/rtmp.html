@@ -12,7 +12,7 @@
 		container: '#video',//“#”代表容器的ID，“.”或“”代表容器的class
 		variable: 'player',//该属性必需设置，值等于下面的new chplayer()的对象
 		flashplayer:false,//如果强制使用flashplayer则设置成true
-		video:'rtmp://vmphplive.io/myapp/3'//视频地址
+		video:"__RTMP_URL__/{$roomInfo.rid}"//视频地址
 	};
 	var player=new ckplayer(videoObject);
 </script>

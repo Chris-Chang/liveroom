@@ -22,14 +22,13 @@
 
 <div class="room-middle-box">
         <div class="room-viedo-content am-u-md-12">
-            <div class="video" id="CuPlayer"><b><img src="__STATIC__/cuplayer/images/loading.gif" alt=""/>
-                视频播放器加载中，请稍后...</b></div>
+            <div class="video" id="CuPlayer"><b><img src="__STATIC__/cuplayer/images/loading.gif" alt=""/>视频播放器加载中，请稍后...</b></div>
             <!--cuplayer /代码开始-->
             <script type="text/javascript" src="__STATIC__/cuplayer/js/swfobject.js"></script>
             {if condition="$roomInfo.status eq 1"}
               <script type="text/javascript">
                 var rtmpApp = "__RTMP_URL__";
-                var stream = "{$roomInfo.guid}";
+                var stream = "{$roomInfo.rid}";
                 var title = "{$roomInfo.name}";
                 var staticUrl = "__STATIC__/cuplayer/";
                 var so = new SWFObject(staticUrl + "player.swf", "myCuPlayer", "100%", "600", "9", "#000000");
@@ -54,7 +53,7 @@
             {else /}
               <script type="text/javascript">
                 var rtmpApp = "__RTMP_URL__";
-                var stream = "{$roomInfo.guid}";
+                var stream = "{$roomInfo.rid}";
                 var title = "{$roomInfo.name}";
                 var staticUrl = "__STATIC__/cuplayer/";
                 var so = new SWFObject(staticUrl + "player.swf", "myCuPlayer", "100%", "600", "9", "#000000");
@@ -77,10 +76,9 @@
                 so.write("CuPlayer");
             </script>
             {/if}
-            <!--cuplayer/代码结束-->
-        </div>
-    </div>
+      </div>
 </div>
+
 <div class="room-right-box no-padding-left am-u-md-2 am-u-lg-2 no-padding-right">
     <!--right box start-->
     <div class=" am-u-md-12 am-u-lg-12 room-viedo-notice">
@@ -109,10 +107,11 @@
 
 
 <script>
-    ws = new WebSocket("ws://127.0.0.1:8282");
+    ws = new WebSocket("__WS_URL__");
+    console.log("__WS_URL__");
     var ajaxUrl="{:url('/gateway/bind')}";
     var ajaxMsgUrl="{:url('/gateway/send')}";
-    var roomId="{$roomInfo.guid}";
+    var roomId="{$roomInfo.rid}";
     var loginUser="{$userLoginInfo.guid}";
     var roomUser="{$roomInfo.uid}";
         // 服务端主动推送消息时会触发这里的onmessage

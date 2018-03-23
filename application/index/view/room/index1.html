@@ -526,12 +526,12 @@
 			<button type="button" onclick="player.videoHue(0)">恢复色相(仅flashplayer)</button>
 		</p>
 		<p>
-			<input type="text" class="videourl" style="width: 500px;" placeholder="视频地址" value="http://www.flashls.org/playlists/test_001/stream_1000k_48k_640x360.m3u8">
+			<input type="text" class="videourl" style="width: 500px;" placeholder="视频地址" value="__RTMP_URL__/{$roomInfo.rid}">
 
 			<button type="button" onclick="newVideo()">播放</button>
 		</p>
 		<p>
-			<input type="text" class="videourl2" style="width: 500px;" placeholder="视频地址" value="http://img.ksbbs.com/asset/Mon_1703/d30e02a5626c066.mp4">
+			<input type="text" class="videourl2" style="width: 500px;" placeholder="视频地址" value="__HLS_URL__/{$roomInfo.rid}">
 
 			<button type="button" onclick="newVideo2()">播放</button>
 
